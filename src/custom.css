@@ -1,0 +1,233 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "adobe-clean", sans-serif;
+  
+}
+.maincard{
+    background-color:"white";
+    min-height:100vh;
+    min-width:1250px ; 
+    box-shadow: 1px 2px 9px #F4AAB9;
+    position:relative;
+    bottom:60px;
+   right: 30px;
+  
+  }
+
+  .maincard .pageheader{
+    font-weight: 700;
+    color: #f4891d;
+    position: relative;
+    bottom: 8px;
+   font-size: 13px;
+   font-weight: bold;
+  }
+  .documentuploadrow1 .upload .uploadbtn .anticon svg{
+    position: relative;
+    right: 6px;
+    width: 16px;
+    top: 6px;
+  
+  } 
+  /* 1st row uploadbutton */
+ .documentuploadrow1 .upload .uploadbtn{
+  font-size: 10px;
+  position: relative;
+  bottom: 11px;
+  color: #4040aa;
+}
+ 
+/* 2nd row header,verifyicon,horizontalline */
+.documentuploadrow2 .antd-icon{
+  position: relative;
+  top: 25px;
+  right: 12px;
+  color: #f4891d;
+}
+.documentuploadrow2 h3 {
+  font-family: sans-serif;
+  font-weight:700;
+  position:relative;
+  right:17px;
+ color: #00000073;;
+  font-size: 14px;
+}
+.documentuploadrow2 .coapplicanthr{
+  right: 9px;
+
+  min-width: 989px;
+  position: relative;
+  top: 35px;
+
+  height: -27px;
+
+  background-color: black;
+  }
+
+
+
+/* 2 & 3 row uploadbuttons */
+.documentuploadrow1 .upload .uploadbtn{
+
+  color: #cc1a32; 
+  border: 1px dashed #8080807a;
+  font-size: 12px;
+   font-weight: 600;
+    font-family: roboto;
+    width:265px;
+    text-align:left;
+    height: 37px;
+    color: #00000085;
+    position:relative;
+    top:5;
+    background-color: #ffffff;
+  }
+.documentuploadrow1 .uploadbtn .uploadicon{
+
+  height:1px;
+  position:relative;
+  top:2;
+  color:#5656b0;
+}
+.documentuploadrow1 .uploadbtn .insidelabel-one{
+
+  position: relative;
+    bottom: 1px;
+    left: 24px;
+    color:#5656b0;
+    font-weight: 700;
+    font-size: 11px;
+}
+.documentuploadrow1 .uploadbtn .insidelabel-two{
+
+  font-size:8px;  
+    position:relative;
+    bottom: 3px;
+    left: 22px;
+    font-family:sans-serif;
+    color: gray;
+}
+ 
+   
+/* overall mobileno content  */
+
+      .documentuploadrow1 .collthree .mobilenolabel{
+       font-size:12px;
+       color:gray;
+       font-weight:500;
+        }
+     .documentuploadrow1 .collthree .mobileinput{
+          border-top: none;
+          border-left: none;
+          border-right: none;
+          border-bottom:1px solid #80808061;
+          background-color: transparent;
+          width: 265px;
+          
+
+        }
+.documentuploadrow1 .collthree .mobileinput:hover {
+    border-color: rgb(122, 91, 91) !important;
+    border-right-width: 1px;
+}
+.documentuploadrow1 .collthree .mobileinput:focus{
+    border-color: rgb(120, 102, 102)!important;
+    box-shadow: none !important;
+    border-right-width: 1px;
+    outline: 0;
+   
+}
+
+/* overall Emailid content  */
+.documentuploadrow1 .collfour .emaillabel{
+  font-size:12px;
+  color:gray;
+  font-weight:500;
+
+}
+.documentuploadrow1 .collfour .emailinput{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom:1px solid #80808061;
+  background-color: transparent;
+  width: 265px;
+  
+
+}
+.documentuploadrow1 .collfour .emailinput:hover {
+border-color: rgb(122, 91, 91) !important;
+border-right-width: 1px;
+}
+.documentuploadrow1 .collfour .emailinput:focus{
+border-color: rgb(120, 102, 102)!important;
+box-shadow: none !important;
+border-right-width: 1px;
+outline: 0;
+
+}
+
+
+/* addcoapplicantbtn */
+.addcoapplicant .addbtn{
+  margin-left: 258%;
+  width: 183px;
+  padding-top: 6px;
+  padding-bottom: 8px;
+  height: 34px;
+  font-size: 12px;
+  font-weight: 600;
+ 
+  border-radius: 4px;
+
+  background:black;
+
+
+
+
+}
+
+
+
+/* previous & save and next buttons */
+
+/* privious btn */
+.primarybtn {
+  width: 150px !important;
+  height: 35px !important;
+  color: #f4891d !important;
+  border-radius: 5px !important;
+  padding: 0px !important;
+  padding-bottom: 2px;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  display: inline-block !important;
+  border: 1px solid #f4891d !important;
+  outline: none !important;
+  background:black !important;
+ 
+}
+  
+/* save and next btn */
+.secondarybtn {
+  width: 150px !important;
+  height: 35px !important;
+  color: #ffffff !important;
+  border-radius: 5px !important;
+  padding: 0px !important;
+  font-family: 'Lato', sans-serif !important;
+  font-weight: 500 !important;
+  background: #f4891d !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  position: relative !important;
+  display: inline-block !important;
+  border: 1px solid #f4891d !important;
+  outline: none !important;
+}
+

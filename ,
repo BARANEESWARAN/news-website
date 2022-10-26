@@ -1,0 +1,922 @@
+<Card className="gx-kyc-main kycDetails-sty">
+<div className='title-sty'>Partner Details</div>
+<Row>
+  <Col md={10} lg={12} sm={10} xs={10}>
+    <div className="gx-font-med">2-KYC details</div>
+  </Col>
+  <Col md={8} lg={12} sm={10} xs={10}>
+    <span>Current Progress</span>
+    <Progress className="gx-app-progress" percent={proval} />
+  </Col>
+</Row>
+<Row>
+  <Col md={12} lg={8} sm={12} xs={24}>
+    <Form.Item
+      className="gx-row-input"
+      name="panCard"
+      label={
+        <label className="gx-font">
+          PAN Card <b className="red-star" >*</b>
+        </label>
+      }
+      validateStatus={panCardError ? "error" : ""}
+      help={panCardError || ""}
+    >
+      {getFieldDecorator("panCard", {
+        rules: [
+          {
+            required: true,
+            message: "Please input your Pan Number!",
+            pattern: new RegExp(/([A-Z]){5}([0-9]){4}([A-Z]){1}$/)
+            
+          },
+        ],
+        initialValue: panCard,
+      })(
+        <Input
+          // autoComplete="off"
+          rules={[{ type: "number" }]}
+          className="gx-form-input"
+          setFieldsValue={panCard}
+          // onKeyPress={AlphabetPatternfrPANCaps}
+
+          maxLength={10}
+          onBlur={dataDisplayFunction}
+          onChange={(e) => {
+            setPanCard(e.target.value);
+          }}
+          // onChange={setPanCard}
+          // onChange={panCard}
+          suffix={panVerification}
+          readOnly={(panVerified === 'true') ? true : false}
+        />
+      )}
+    </Form.Item>
+  </Col>
+  <Col md={12} lg={8} sm={24} xs={24}>
+    <Form.Item
+      className="gx-row-input"
+      name="ckycNumber"
+      label={<label className="gx-font">CKYC Number</label>}
+      validateStatus={ckycError ? "error" : ""}
+      help={ckycError || ""}
+    >
+      {getFieldDecorator("ckycNumber", {
+        rules: [{ message: "Please input your Pan Number!" }],
+        initialValue: kycDetails.ckycNumber,
+      })(
+        <Input
+          disabled={true}
+          className="gx-form-input"
+          setFieldsValue={ckycNumber}
+          onChange={(e) => setCkycNumber(e.target.value)}
+        />
+      )}
+    </Form.Item>
+  </Col>
+  <Col md={12} lg={8} sm={24} xs={24}>
+    <Form.Item
+      className="gx-row-input"
+      name="adhaarNumber"
+      // onKeyPress={NumberPattern}
+      
+      label={
+        <label className="gx-font">
+          Aadhaar Card <b className="red-star" >*</b>
+        </label>
+      }
+      validateStatus={adhaarNumberError ? "error" : ""}
+      help={adhaarNumberError || ""}
+    >
+      {getFieldDecorator("aadhaarCard", {
+        rules: [
+          {
+            required: false,
+            message: "Please input your Aadhaar Number!",
+          },
+          // {
+          //   pattern: /^[01]\d{3}[\s-]?\d{4}[\s-]?\d{4}$/,
+          //   message: "Invalid Aadhar no",
+          // },
+          {
+            max: 12,
+            message: "Aadhar must be maximum 12 characters.",
+          },
+        ],
+        initialValue: aadhaarCard,
+      })(
+        <Input
+          autoComplete="off"
+          rules={[{ type: "number" }]}
+          className="gx-form-input"
+          setFieldsValue={adhaar}
+          maxLength={12}
+          // onBlur={dataDisplayFunction}
+          onChange={(e) => {
+            setAdhaar(e.target.value);
+          }}
+          suffix={adharVerifycation}
+          readOnly={(adhaarVerified === 'true') ? true : false}
+        />
+      )}
+    </Form.Item>
+  </Col>
+  {/* <Col>
+    <div className="kycDetailUpload">
+      <Upload {...props} onChange={""}>
+        <div className="queriesUpload">
+          <div className="queriesUploadIcon">
+            <FontAwesomeIcon icon={faArrowUpFromBracket} />
+          </div>
+          <label>
+            {" "}
+            <div style={{ color: "#cc1a32", fontSize: 15, fontWeight: 600, fontFamily: 'roboto' }}>
+              Upload Pan Card
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 600, fontFamily: 'roboto' }} >
+              Please upload .pdf .jpg file limit 5MB
+            </div>
+          </label>
+        </div>
+      </Upload>
+    </div>
+  </Col> */}
+</Row>
+<Row>
+  {/* <Col md={12} lg={4} sm={24} xs={24}>
+    <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+
+      <FontAwesomeIcon icon={faUpload} />
+
+    </Button>
+  </Col> */}
+  {/* <Col md={12} lg={8} sm={24} xs={24}>
+    <Form.Item
+      className="gx-row-input"
+      name="ckycNumber"
+      label={<label className="gx-font">CKYC Number</label>}
+      validateStatus={ckycError ? "error" : ""}
+      help={ckycError || ""}
+    >
+      {getFieldDecorator("ckycNumber", {
+        rules: [{ message: "Please input your Pan Number!" }],
+        initialValue: kycDetails.ckycNumber,
+      })(
+        <Input
+          disabled={true}
+          className="gx-form-input"
+          setFieldsValue={ckycNumber}
+          onChange={(e) => setCkycNumber(e.target.value)}
+        />
+      )}
+    </Form.Item>
+  </Col> */}
+</Row>
+
+
+<Row>
+  {/* <Col md={12} lg={8} sm={24} xs={24}>
+    <Form.Item
+      className="gx-row-input"
+      name="adhaarNumber"
+      // onKeyPress={NumberPattern}
+      
+      label={
+        <label className="gx-font">
+          Aadhaar Card <b className="red-star" >*</b>
+        </label>
+      }
+      validateStatus={adhaarNumberError ? "error" : ""}
+      help={adhaarNumberError || ""}
+    >
+      {getFieldDecorator("aadhaarCard", {
+        rules: [
+          {
+            required: true,
+            message: "Please input your Aadhaar Number!",
+          },
+          // {
+          //   pattern: /^[01]\d{3}[\s-]?\d{4}[\s-]?\d{4}$/,
+          //   message: "Invalid Aadhar no",
+          // },
+          {
+            max: 12,
+            message: "Aadhar must be maximum 12 characters.",
+          },
+        ],
+        initialValue: aadhaarCard,
+      })(
+        <Input
+          autoComplete="off"
+          rules={[{ type: "number" }]}
+          className="gx-form-input"
+          setFieldsValue={adhaar}
+          maxLength={12}
+          // onBlur={dataDisplayFunction}
+          onChange={(e) => {
+            setAdhaar(e.target.value);
+          }}
+          suffix={adharVerifycation}
+          readOnly={(adhaarVerified === 'true') ? true : false}
+        />
+      )}
+    </Form.Item>
+  </Col> */}
+  {/* <Col lg={8}>
+    <div className="kycDetailUpload">
+      <Upload {...props} onChange={""}>
+        <div className="queriesUpload">
+          <div className="queriesUploadIcon">
+            <FontAwesomeIcon icon={faArrowUpFromBracket} />
+          </div>
+          <label>
+            {" "}
+            <div style={{ color: "#cc1a32", fontSize: 15, fontWeight: 600, fontFamily: 'roboto' }}>
+              Upload Aadhar Front
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 600, fontFamily: 'roboto' }} >
+              Please upload .pdf .jpg file limit 5MB
+            </div>
+          </label>
+        </div>
+      </Upload>
+    </div>
+  </Col> */}
+  {/* <Col  >
+    <div className="kycDetailUpload">
+      <Upload {...props} onChange={""}>
+        <div className="queriesUpload">
+          <div className="queriesUploadIcon">
+            <FontAwesomeIcon icon={faArrowUpFromBracket} />
+          </div>
+          <label>
+            {" "}
+            <div style={{ color: "#cc1a32", fontSize: 15, fontWeight: 600, fontFamily: 'roboto' }}>
+              Upload Aadhar Back
+            </div>
+            <div style={{ fontSize: 12, fontWeight: 600, fontFamily: 'roboto' }} >
+              Please upload .pdf .jpg file limit 5MB
+            </div>
+          </label>
+        </div>
+      </Upload>
+    </div>
+  </Col> */}
+  {/* <Col md={12} lg={4} sm={4} xs={24}>
+    <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+
+      <FontAwesomeIcon icon={faUpload} />
+
+    </Button>
+  </Col> */}
+  {GstVisible === true ? (
+    <>
+      <Row>
+        <Col md={24} lg={8} sm={8} xs={24}>
+          <Form.Item className="gx-row-input">
+            {getFieldDecorator("gstId", {
+              rules: [
+                // { required: true, message: 'Please Enter GST Number!' }
+              ],
+            })(
+              <Input
+                className="gx-form-input"
+                label="GST"
+                prefix={gstprefixSelectors}
+                name="GST"
+                placeholder="GST-Applicable"
+                autoComplete="off"
+                readOnly="true"
+              />
+            )}
+          </Form.Item>
+        </Col>
+        <Col md={12} lg={8} sm={8} xs={24}>
+          <Form.Item
+            className="gx-row-input"
+            name="gst"
+            validateStatus={gstIdError ? "error" : ""}
+            help={gstIdError || ""}
+          >
+            {getFieldDecorator("gst", {
+              rules: [
+                // {
+                //   required: true,
+                //   message: "Please input your Pan Number!",
+                // },
+              ],
+              initialValue: kycDetails.gst,
+            })(
+              <Input
+                placeholder="GST Number"
+                autoComplete="off"
+                disabled={gstchecked === true ? false : true}
+                rules={[{ type: "number" }]}
+                className="gx-form-input"
+                maxLength={15}
+                // onBlur={dataDisplayFunction}
+                onChange={(e) => {
+                  setGstId(e.target.value);
+                }}
+                suffix={
+                  gstchecked === true ? gstIdVerification : null
+                }
+              />
+            )}
+          </Form.Item>
+        </Col>
+        <Col>
+          <div className="kycGTMDetailUpload">
+            <Upload {...props} onChange={""}>
+              <div className="queriesUpload">
+                <div className="queriesUploadIcon">
+                  <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                </div>
+                <label>
+                  {" "}
+                  <div style={{ color: "#cc1a32", fontSize: 15, fontWeight: 600, fontFamily: 'roboto' }}>
+                    Upload GST
+                  </div>
+                  <div style={{ fontSize: 12, fontWeight: 600, fontFamily: 'roboto' }} >
+                    Please upload .pdf .jpg file limit 5MB
+                  </div>
+                </label>
+              </div>
+              {/* <Button icon={<UploadOutlined />}>
+    Click to Upload
+  </Button> */}
+            </Upload>
+          </div>
+        </Col>
+        {/* <Col md={4} lg={2} sm={2} xs={2}>
+      <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+        <FontAwesomeIcon icon={faUpload} />
+      </Button>
+    </Col> */}
+      </Row>
+
+      <Row>
+        <Col md={24} lg={8} sm={8} xs={24}>
+          <Form.Item className="gx-row-input">
+            {getFieldDecorator("fullName", {
+              rules: [
+                // { required: true, message: 'Please input your fullName!' }
+              ],
+            })(
+              <Input
+                className="gx-form-input"
+                label="FullName"
+                placeholder="TRIN-Applicable"
+                autoComplete="off"
+                name="fullName"
+                prefix={trinprefixSelectors}
+                readOnly="true"
+              />
+            )}
+          </Form.Item>
+        </Col>
+        <Col md={12} lg={8} sm={8} xs={24}>
+          <Form.Item
+            className="gx-row-input"
+            name="trin"
+            validateStatus={panCardError ? "error" : ""}
+            help={panCardError || ""}
+          >
+            {getFieldDecorator("trin", {
+              rules: [
+                // {
+                //   required: true,
+                //   message: "Please input your Pan Number!",
+                // },
+              ],
+              initialValue: kycDetails.trin,
+            })(
+              <Input
+                placeholder="TRIN Number"
+                autoComplete="off"
+                disabled={trinchecked === true ? false : true}
+                rules={[{ type: "number" }]}
+                className="gx-form-input"
+                setFieldsValue={trin}
+                maxLength={10}
+                // onBlur={dataDisplayFunction}
+                onChange={(e) => {
+                  settrin(e.target.value);
+                }}
+                suffix={
+                  trinchecked === true ? gstIdVerification : null
+                }
+              />
+            )}
+          </Form.Item>
+        </Col>
+        <Col>
+          <div className="kycGTMDetailUpload">
+            <Upload {...props} onChange={""}>
+              <div className="queriesUpload">
+                <div className="queriesUploadIcon">
+                  <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                </div>
+                <label>
+                  {" "}
+                  <div style={{ color: "#cc1a32", fontSize: 15, fontWeight: 600, fontFamily: 'roboto' }}>
+                    Upload TRIN
+                  </div>
+                  <div style={{ fontSize: 12, fontWeight: 600, fontFamily: 'roboto' }} >
+                    Please upload .pdf .jpg file limit 5MB
+                  </div>
+                </label>
+              </div>
+              {/* <Button icon={<UploadOutlined />}>
+    Click to Upload
+  </Button> */}
+            </Upload>
+          </div>
+        </Col>
+
+        {/* <Col md={4} lg={2} sm={2} xs={2}>
+      <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+        <FontAwesomeIcon icon={faUpload} />
+      </Button>
+    </Col> */}
+      </Row>
+
+      <Row>
+        <Col md={24} lg={8} sm={8} xs={24}>
+          <Form.Item className="gx-row-input">
+            {getFieldDecorator("fullName", {
+              rules: [
+                // { required: true, message: 'Please input your fullName!' }
+              ],
+            })(
+              <Input
+                className="gx-form-input"
+                label="FullName"
+                placeholder="MSME-Applicable"
+                name="fullName"
+                prefix={msmeprefixSelectors}
+                autoComplete="off"
+                readOnly="true"
+              />
+            )}
+          </Form.Item>
+        </Col>
+        <Col md={12} lg={8} sm={8} xs={24}>
+          <Form.Item
+            className="gx-row-input"
+            name="msme"
+            validateStatus={panCardError ? "error" : ""}
+            help={panCardError || ""}
+          >
+            {getFieldDecorator("msme", {
+              rules: [
+                // {
+                //   required: true,
+                //   message: "Please input your Pan Number!",
+                // },
+              ],
+              initialValue: kycDetails.msme,
+            })(
+              <Input
+                placeholder="MSME Number"
+                autoComplete="off"
+                disabled={msmechecked === true ? false : true}
+                rules={[{ type: "number" }]}
+                className="gx-form-input"
+                setFieldsValue={msme}
+                maxLength={10}
+                // onBlur={dataDisplayFunction}
+                onChange={(e) => {
+                  setmsme(e.target.value);
+                }}
+                suffix={
+                  msmechecked === true ? gstIdVerification : null
+                }
+              />
+            )}
+          </Form.Item>
+        </Col>
+        <Col>
+          <div className="kycGTMDetailUpload">
+            <Upload {...props} onChange={""}>
+              <div className="queriesUpload">
+                <div className="queriesUploadIcon">
+                  <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                </div>
+                <label>
+                  {" "}
+                  <div style={{ color: "#cc1a32", fontSize: 15, fontWeight: 600, fontFamily: 'roboto' }}>
+                    Upload MSME
+                  </div>
+                  <div style={{ fontSize: 12, fontWeight: 600, fontFamily: 'roboto' }} >
+                    Please upload .pdf .jpg file limit 5MB
+                  </div>
+                </label>
+              </div>
+              {/* <Button icon={<UploadOutlined />}>
+    Click to Upload
+  </Button> */}
+            </Upload>
+          </div>
+        </Col>
+        {/* <Col md={4} lg={2} sm={2} xs={2}>
+      <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+      <FontAwesomeIcon icon={faUpload} />
+      </Button>
+    </Col> */}
+      </Row>
+      <Col md={24} lg={8} sm={24} xs={24}>
+        <Form.Item
+          className="gx-row-input"
+          validateStatus={fullNameError ? "error" : ""}
+          help={fullNameError || ""}
+        >
+          {getFieldDecorator("legal", {
+            rules: [
+              // { required: true, message: 'Please input your legal dispute!' }
+            ],
+          })(
+            <Input
+              className="gx-form-input"
+              label="FullName"
+              // prefix={prefixSelectors}
+              name="fullName1"
+              placeholder="Legal Dispute"
+              autoComplete="off"
+            // readOnly="true"
+            />
+          )}
+        </Form.Item>
+      </Col>
+    </>
+  ) : (
+    <div></div>
+  )}
+</Row>
+
+
+<Row>
+  <div className='gx-icon'>
+    <Col className='gx-upload' md={10} lg={8} sm={12} xs={24}>
+      <div style={{ display: 'flex', flexDirection: 'column', flexWrap: "wrap" }}>
+        <div style={{ fontFamily: "roboto" }}>
+          Applicant's Photo
+        </div>
+        <Card style={{ height: 100, width: 100, backgroundColor: '#EBEBEB', padding: "0px" }}>
+          {
+            preview ?
+              <Form.Item>
+                <img alt="Preview" src={preview} width="auto" height="auto" ></img>
+              </Form.Item>
+              : ""
+          }
+        </Card>
+      </div>
+    </Col>
+  </div>
+  {/* <div style={{ display: 'flex', flexDirection: 'column', marginTop: "3%" }}>
+    <Form.Item>
+      {getFieldDecorator('upload', {
+        valuePropName: 'fileList',
+        getValueFromEvent: normFile
+      })(
+        <Upload showUploadList={false} style={{ marginTop: "20%", color: "#f5f5f5" }} name="logo" listType="picture" beforeUpload={() => false} accept="image/x-png,image/jpeg" >
+          <Button style={{ borderRadius: 100 }}>
+          <img src={require("assets/images/upload-ic.png")} />
+           
+            <div style={{ fontFamily: "roboto", fontSize: 12, color: "#a4a4a4" }}>UPLOAD</div>
+          </Button>
+        </Upload>
+      )}
+    </Form.Item>
+  </div> */}
+
+  <div className='gx-icon'>
+    <Col className='gx-upload' md={10} lg={8} sm={12} xs={24}>
+      <div style={{ display: 'flex', flexDirection: 'column', flexWrap: "wrap" }}>
+        <div style={{ fontFamily: "roboto" }}>
+          Original Photo
+        </div>
+        <Card style={{ height: 100, width: 100, backgroundColor: '#EBEBEB', padding: "0px" }}>
+          {
+            takephoto ?
+              <Form.Item>
+                <img alt="takephoto" src={takephoto} width="auto" height="auto" ></img>
+              </Form.Item>
+              : ""
+          }
+        </Card>
+      </div>
+    </Col>
+  </div>
+  <div style={{ display: 'flex', flexDirection: 'column', marginTop: "3%" }}>
+    <Form.Item>
+      {getFieldDecorator('takephoto', {
+        valuePropName: 'fileList',
+        getValueFromEvent: uploadFile
+      })(
+        <Upload showUploadList={false} style={{ marginTop: "20%", color: "#f5f5f5" }} name="logo" listType="picture" beforeUpload={() => false} accept="image/x-png,image/jpeg" >
+          <div style={{ borderRadius: 100 }} className="upload-sty">
+          <img src={require("assets/images/upload-ic.png")} />
+            {/* <FontAwesomeIcon style={{ marginTop: 0, marginBottom: 10, fontSize: 30, color: "#cc1f35" }} icon={faCloud} /> */}
+            <div style={{ fontFamily: "roboto", fontSize: 12, color: "#a4a4a4" }}>BROWSE</div>
+          </div>
+        </Upload>
+      )}
+    </Form.Item>
+  </div>
+  <Col md={0} lg={0} sm={12} xs={24}>
+  <div style={{ borderRadius: 100 }}>
+          <img src={require("assets/images/camera-ic.png")} />
+            {/* <FontAwesomeIcon style={{ marginTop: 0, marginBottom: 10, fontSize: 30, color: "#cc1f35" }} icon={faCloud} /> */}
+            <div className="upload-sty" style={{ fontFamily: "roboto", fontSize: 12, color: "#a4a4a4" }}>TAKE PHOTO</div>
+            <div>
+              <p> Select files to upload </p>
+              <p>2MB Limit, jpegs png allowed</p>
+            
+            </div>
+          </div>
+    </Col>
+</Row>
+{/* <Row >
+<div className="gx-button-opp">
+<Col span={8}>
+<Button
+    className="abhl-secondary"
+    onClick={handleCancel}        >
+    <span>Cancel</span>
+  </Button>
+</Col>
+<Col span={8} offset={8}>
+<Button
+    className="abhl-secondary"
+    onClick={() => props.prev()}
+  >
+    <span>Previous</span>
+  </Button>
+  {
+    <Button className="abhl-primary" htmlType="submit">
+      Save & Next
+    </Button>
+  }
+
+</Col>
+</div>
+</Row> */}
+
+<div className="gx-button-opp">
+  {/* <Button className="abhl-primary" style={{ backgroundColor: 'white', color: '#faa61a' }} onClick={() =>
+  props.prev()
+}>
+  Previous
+</Button> */}
+
+  <Button
+    className="abhl-secondary"
+    onClick={handleCancel}        >
+    <span>Cancel</span>
+  </Button>
+  {/* <Button className="abhl-secondary" style={{ backgroundColor: 'white', color: '#faa61a' }} onClick={() =>
+  props.prev()
+}>
+  cancel
+</Button> */}
+  <Button
+    className="abhl-secondary"
+    onClick={() => props.prev()}
+  >
+    <span>Previous</span>
+  </Button>
+  {
+    <Button className="abhl-primary" htmlType="submit">
+      Save & Next
+    </Button>
+  }
+
+  {/* <Button className="abhl-primary" onClick={() => { props.next() }} disabled={disableSubmitBtn}>Save & Next</Button> */}
+
+
+</div>
+{
+  leadModal === true
+    ?
+    <Row type="flex" align="middle">
+      <Col md={24} lg={24} sm={24} xs={24}>
+        <Button className="gx-app-leadbutton" onClick={handleleadgenerate}>
+          Generate Application
+        </Button>
+      </Col>
+    </Row>
+    :
+    null
+}
+{
+  applicantGenerated === true
+    ?
+    <Row>
+      <Col md={10} lg={8} sm={8} xs={24}>
+        <Form.Item
+          className="gx-row-input"
+          name="Voter Id Number"
+          label={<label className="gx-font">Voter Id Card Number</label>}
+          validateStatus={voterIdError ? "error" : ""}
+          help={voterIdError || ""}
+        >
+          {getFieldDecorator("voterIdCardNumber", {
+            rules: [{ message: "Please input your Pan Number!" }],
+            initialValue: kycDetails.voterIdCardNumber,
+          })(
+            <Input
+              className="gx-form-input"
+              setFieldsValue={voterId}
+              onChange={(e) => setVoterId(e.target.value)}
+              suffix={voterIdVerification}
+            />
+          )}
+        </Form.Item>
+      </Col>
+      <Col md={4} lg={2} sm={2} xs={2}>
+        <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+          <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </Col>
+      <Col md={8} lg={10} sm={10} xs={22}>
+        <Form.Item
+          className="gx-row-input"
+          name="Driving Licsense Number"
+          label={
+            <label className="gx-font">Driving Licsense Number</label>
+          }
+          validateStatus={drivingNumberError ? "error" : ""}
+          help={drivingNumberError || ""}
+        >
+          {getFieldDecorator("drivingLicenseNumber", {
+            rules: [{ message: "Please input your Pan Number!" }],
+            initialValue: kycDetails.drivingLicenseNumber,
+          })(
+            <Input
+              className="gx-form-input"
+              setFieldsValue={driving}
+              suffix={dlVerification}
+              onChange={(e) => setDriving(e.target.value)}
+              maxLength={16}
+            />
+          )}
+        </Form.Item>
+      </Col>
+      <Col md={4} lg={2} sm={2} xs={2}>
+        <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+          <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </Col>
+      <Col md={8} lg={10} sm={10} xs={22}>
+        <Form.Item
+          className="gx-row-input"
+          name="Passport NUmber "
+          label={<label className="gx-font">Passport Number</label>}
+          validateStatus={passportError ? "error" : ""}
+          help={passportError || ""}
+        >
+          {getFieldDecorator("passportNumber", {
+            rules: [{ message: "Please input your Pan Number!" }],
+            initialValue: kycDetails.passportNumber,
+          })(
+            <Input
+              className="gx-form-input"
+              setFieldsValue={passport}
+              suffix={passportverify}
+              onChange={(e) => setPassport(e.target.value)}
+              maxLength={8}
+            />
+          )}
+        </Form.Item>
+      </Col>
+      <Col md={4} lg={2} sm={2} xs={2}>
+        <Button className="gx-app-kycbuttonupload" onClick={voterVerify}>
+          <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </Col>
+      <Col md={8} lg={10} sm={10} xs={22}>
+        <Form.Item
+          className="gx-row-input"
+          name="Voter Id Number"
+          label={<label className="gx-font">Electricity Bill</label>}
+          validateStatus={electricBillError ? "error" : ""}
+          help={electricBillError || ""}
+        >
+          {getFieldDecorator("ElectricityBillNum", {
+            rules: [{ message: "Please input your Electricity Num!" }],
+            initialValue: kycDetails.ElectricityBillNum,
+          })(
+            <Input
+              className="gx-form-input"
+              setFieldsValue={electricBillId}
+              onChange={(e) => setElectricBillId(e.target.value)}
+              suffix={eletricityBillVerification}
+            />
+          )}
+        </Form.Item>
+      </Col>
+      <Col md={4} lg={2} sm={2} xs={2}>
+        <Button className="gx-app-kycbuttonupload">
+          <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </Col>
+      <Col md={8} lg={10} sm={10} xs={22}>
+        <Form.Item
+          className="gx-row-input"
+          name="Tax Deduction Account Number"
+          label={<label className="gx-font">Tax Deduction Account Number</label>}
+          validateStatus={taxdededuceError ? "error" : ""}
+          help={taxdededuceError || ""}
+        >
+          {getFieldDecorator("TaxDeductionNum", {
+            rules: [{ message: "Please input your Tax Deduction Account Number!" }],
+            initialValue: kycDetails.TaxDeductionNum,
+          })(
+            <Input
+              className="gx-form-input"
+              setFieldsValue={taxdededuceId}
+              onChange={(e) => setTaxDededuceId(e.target.value)}
+              suffix={TaxDeduceVerification}
+            />
+          )}
+        </Form.Item>
+      </Col>
+      <Col md={4} lg={2} sm={2} xs={2}>
+        <Button className="gx-app-kycbuttonupload" >
+          <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </Col>
+      <Col md={8} lg={10} sm={22} xs={22}>
+        <Form.Item
+          className="gx-row-input"
+          name="Liquefied petroleum gas"
+          label={
+            <label className="gx-font">Liquefied petroleum gas</label>
+          }
+          validateStatus={lpgError ? "error" : ""}
+          help={lpgError || ""}
+        >
+          {getFieldDecorator("LPG", {
+            rules: [{ message: "Please input your LPG Number!" }],
+            initialValue: kycDetails.lpgId,
+          })(
+            <Input
+              className="gx-form-input"
+              setFieldsValue={lpgId}
+              suffix={LPGVerification}
+              onChange={(e) => setLpgId(e.target.value)}
+              maxLength={17}
+            />
+          )}
+        </Form.Item>
+      </Col>
+      <Col md={4} lg={2} sm={2} xs={2}>
+        <Button className="gx-app-kycbuttonupload">
+          <FontAwesomeIcon icon={faUpload} />
+        </Button>
+      </Col>
+    </Row>
+    :
+    null
+}
+<Drawer
+  title={
+    "Verify Aadhaar Number"
+  }
+  width={376}
+  className="drawer2"
+  closable={false}
+  onClose={onClose}
+  visible={visible}
+>
+  {adhaarPushVerified === true ? (
+    <VerifyAdhaar
+      setChildrenDrawer={setVisible}
+      adhaarReqId={adhaarReqId}
+      // masterId={props.masterid}
+      // applicantId={props.id}
+      setAdharReqId={setAdharReqId}
+      adhaar={adhaar}
+      adhaarVerified={adhaarVerified}
+      setAdhaarVerified={setAdhaarVerified}
+      setAdhaarPushVerified={setAdhaarPushVerified}
+      fun={dataDisplayFunction}
+      setDisabled={setDisableAdhaarVerifyBtn}
+    />
+  ) : null}
+</Drawer>
+{
+  applicantGenerated === true
+    ?
+    <div className="gx-button-opp">
+      <Button className="abhl-secondary btn-7" onClick={handleCancel} ><span>Close</span></Button>
+      <Button className="abhl-secondary btn-4" onClick={() => props.prev()} ><span>Previous</span></Button>
+      <Button className="abhl-primary btn-5" htmlType="submit" disabled={disableSubmitBtn}>Save122 & Next</Button>
+    </div>
+    :
+    null
+}
+</Card>
+          
